@@ -29,7 +29,9 @@ public class TestRecord {
 
 			JsonObject bresponse=co.getResponseFromBrowser();
 
-			KCBrowser.removeListners();
+			KCBrowser.removeListners
+			
+			//TODO : processing the bresponse for action and selector
 
 			//TODO : to determine terminate event
 			terminte=false;//continous process;
