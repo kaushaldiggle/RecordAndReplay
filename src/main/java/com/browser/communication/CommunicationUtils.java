@@ -19,16 +19,18 @@ public class CommunicationUtils {
 		// TODO get available port
 		return 0000;
 	}
-	public Boolean isFilePresent() {
+	public Boolean isFilePresent(String actionFilePath) {
 		String baseFilePath=System.getProperty("user.dir");
 		baseFilePath=baseFilePath.substring(0,baseFilePath.lastIndexOf("/")+1)+"download/action.json";
+		baseFilePath=actionFilePath;
 		//System.out.println(baseFilePath);
 		File tempFile = new File(baseFilePath);
 		return tempFile.exists();
 	}
-	public String getDataFromFile() {
+	public String getDataFromFile(String actionFilePath) {
 		String baseFilePath=System.getProperty("user.dir");
 		baseFilePath=baseFilePath.substring(0,baseFilePath.lastIndexOf("/")+1)+"download/action.json";
+		baseFilePath=actionFilePath;
 		File tempFile = new File(baseFilePath);
 		//System.out.println(baseFilePath);
 		FileReader fr;
@@ -44,9 +46,10 @@ public class CommunicationUtils {
 		}
 		return resourceData;
 	}
-	public void deleteFileFromDownload() {
+	public void deleteFileFromDownload(String actionFilePath) {
 		String baseFilePath=System.getProperty("user.dir");
 		baseFilePath=baseFilePath.substring(0,baseFilePath.lastIndexOf("/")+1)+"download/action.json";
+		baseFilePath=actionFilePath;
 		File tempFile = new File(baseFilePath);
 		if(tempFile.exists())
 			try {
