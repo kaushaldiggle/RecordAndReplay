@@ -18,7 +18,7 @@ public class CommunicationOperation {
 		//TODO : create the serverUrl
 	}
 
-	public String getResponseFromBrowser() throws InterruptedException {
+	public String getResponseFromBrowser(String actionFilePath) throws InterruptedException {
 		//TODO : wait for the response from the browser
 		//TODO : get response from the browser and return it
 		Instant start = Instant.now();
@@ -27,14 +27,14 @@ public class CommunicationOperation {
 		String dataFromFile="";
 		do {
 
-			fileFound=cUtils.isFilePresent();
+			fileFound=cUtils.isFilePresent(actionFilePath);
 			if(fileFound)
-				dataFromFile= cUtils.getDataFromFile();
+				dataFromFile= cUtils.getDataFromFile(actionFilePath);
 			//System.out.println("File Found : "+ fileFound);
 			timelapse = Duration.between(start, Instant.now()).getSeconds();
 			//System.out.println("Execution time in seconds: "+ timelapse);
 		}while(!fileFound&&timelapse<180);//3 min elapsed for 1 event to record
-		cUtils.deleteFileFromDownload();
+		//cUtils.deleteFileFromDownload(actionFilePath);
 		return dataFromFile;
 
 	}
