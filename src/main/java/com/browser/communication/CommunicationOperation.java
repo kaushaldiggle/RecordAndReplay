@@ -1,5 +1,9 @@
 package com.browser.communication;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.concurrent.TimeUnit;
+
 import com.google.gson.JsonObject;
 
 public class CommunicationOperation {
@@ -14,10 +18,25 @@ public class CommunicationOperation {
 		//TODO : create the serverUrl
 	}
 
-	public JsonObject getResponseFromBrowser() {
+	public String getResponseFromBrowser(String actionFilePath) throws InterruptedException {
 		//TODO : wait for the response from the browser
 		//TODO : get response from the browser and return it
-		return null;
+		Instant start = Instant.now();
+		Boolean fileFound=false;
+		long timelapse=0;
+		String dataFromFile="";
+		do {
+
+			fileFound=cUtils.isFilePresent(actionFilePath);
+			if(fileFound)
+				dataFromFile= cUtils.getDataFromFile(actionFilePath);
+			//System.out.println("File Found : "+ fileFound);
+			timelapse = Duration.between(start, Instant.now()).getSeconds();
+			//System.out.println("Execution time in seconds: "+ timelapse);
+		}while(!fileFound&&timelapse<180);//3 min elapsed for 1 event to record
+		//cUtils.deleteFileFromDownload(actionFilePath);
+		return dataFromFile;
+
 	}
 
 	public void closeTheServer() {

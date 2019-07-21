@@ -18,7 +18,9 @@ public class SeleniumUtils {
 		((JavascriptExecutor) this.driver).executeScript(script);
 	}
 	public String getDataFromResource(String fileName) {
+		 
 		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		//InputStream inputStream = classloader.getResourceAsStream(fileName);
 		return new BufferedReader(new InputStreamReader(classloader.getResourceAsStream(fileName)))
 				  .lines().collect(Collectors.joining("\n"));
 	}
