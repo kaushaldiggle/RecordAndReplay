@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
+import org.json.simple.JSONObject;
+
 import com.browser.automation.SeleniumOperation;
 import com.browser.communication.CommunicationOperation;
 import com.google.gson.JsonObject;
@@ -19,7 +21,7 @@ public class TestRecord {
 	public void startTestRecord() throws IOException, InterruptedException {
 		SeleniumOperation KCBrowser=new SeleniumOperation(seleniumAddress);
 		//SeleniumOperation RPBrowser=new SeleniumOperation(seleniumAddress);
-		String tcId="C12354";
+		String tcId="ghghgh234567";
 		CommunicationOperation co=new CommunicationOperation();
 		int recordSteps=0;
 		Boolean terminte=false;
@@ -31,12 +33,14 @@ public class TestRecord {
 			//TODO : selecting browser on which operation to be performed
 			//initial : KCBrowser
 			System.out.println("Start Recording Action "+(recordSteps));
-			KCBrowser.driver.get("https://data-flair.training/blogs/read-java-console-input/#");
+			KCBrowser.driver.get("https://www.w3.org/");
 			KCBrowser.addListners(actionFile);
 
-			String bresponse=co.getResponseFromBrowser(actionFilePath);
-			System.out.println("BROWSER RESPONSE : \n[\n"+bresponse+"]");
+			JSONObject bresponse=(JSONObject) co.getResponseFromBrowser(actionFilePath);
+			//System.out.println("BROWSER RESPONSE : \n[\nAction : "+bresponse.get("action")+" | innerHTML : "+bresponse.get("innerHTML")+"\n]");
+			System.out.println(bresponse.toString());
 			KCBrowser.removeListners();
+			Thread.sleep(4000);
 			
 			//System.out.println("To continue press 'Y' to terminate 'N' : ");
 		//	Scanner in = new Scanner(System.in);
